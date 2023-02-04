@@ -3,6 +3,7 @@ Template Windows App With Flutter
 Minimum SDK 3.0.5
 
 install package : https://pub.dev/packages/msix
+
 install package : https://pub.dev/packages/fluent_ui
 
 Important : Install Visual Studio And make sure "flutter doctor" already to use
