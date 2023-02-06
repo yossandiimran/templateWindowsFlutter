@@ -11,14 +11,14 @@ class Alert {
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
           contentPadding: const EdgeInsets.only(top: 10.0),
           content: SizedBox(
-            height: global.getWidth(context) / 3,
+            height: 200,
             child: Column(
               children: [
                 const Spacer(),
                 Icon(
                   material.Icons.warning_amber_rounded,
                   color: defOrange,
-                  size: global.getWidth(context) / 8,
+                  size: 50,
                 ),
                 const Spacer(),
                 Container(
@@ -26,8 +26,25 @@ class Alert {
                   child: Text(
                     "$text",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: global.getWidth(context) / 20),
+                    style: TextStyle(fontSize: 24),
                   ),
+                ),
+                const Spacer(),
+                Row(
+                  children: [
+                    Spacer(),
+                    GestureDetector(
+                      onTap: () async {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: widget.decCont2(defBlue, 10, 10, 10, 10),
+                        padding: EdgeInsets.only(left: 25, right: 25, top: 10, bottom: 10),
+                        child: Text("   Ok   ", style: textStyling.styleText6(14, defWhite)),
+                      ),
+                    ),
+                    Spacer(),
+                  ],
                 ),
                 const Spacer(),
               ],
@@ -46,14 +63,14 @@ class Alert {
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
           contentPadding: const EdgeInsets.only(top: 10.0),
           content: SizedBox(
-            height: global.getWidth(context) / 3,
+            height: 200,
             child: Column(
               children: [
                 const Spacer(),
                 Icon(
                   material.Icons.check_circle_outline_outlined,
                   color: defBlue,
-                  size: global.getWidth(context) / 8,
+                  size: 50,
                 ),
                 const Spacer(),
                 Container(
@@ -61,10 +78,27 @@ class Alert {
                   child: Text(
                     "$text",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: global.getWidth(context) / 20),
+                    style: TextStyle(fontSize: 24),
                   ),
                 ),
                 const Spacer(),
+                Row(
+                  children: [
+                    Spacer(),
+                    GestureDetector(
+                      onTap: () async {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: widget.decCont2(defBlue, 10, 10, 10, 10),
+                        padding: EdgeInsets.only(left: 25, right: 25, top: 10, bottom: 10),
+                        child: Text("   Ok   ", style: textStyling.styleText6(14, defWhite)),
+                      ),
+                    ),
+                    Spacer(),
+                  ],
+                ),
+                Spacer(),
               ],
             ),
           ),
@@ -82,7 +116,7 @@ class Alert {
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
             contentPadding: const EdgeInsets.only(top: 10.0),
             content: Container(
-              height: global.getWidth(context) / 3,
+              height: 150,
               margin: const EdgeInsets.all(10),
               child: Column(
                 children: [
@@ -93,7 +127,7 @@ class Alert {
                     child: Text(
                       "$text",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: global.getWidth(context) / 20),
+                      style: TextStyle(fontSize: 24),
                     ),
                   ),
                   const Spacer(),

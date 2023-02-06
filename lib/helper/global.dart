@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:windowsapp/header.dart';
 
+// Import Helper / Custom Class Lib
 Global global = Global();
 Alert alert = Alert();
 CustomWidget widget = CustomWidget();
 TextStyling textStyling = TextStyling();
+Preference preference = Preference();
 
 var appVersion = '0.0.1';
 
@@ -33,45 +35,45 @@ class Global {
   getMainServiceUrl(String link) => Uri.parse(baseUrl + link);
 
   getBapiServiceUrl(String link) {
-    // var url = Uri.parse(bapiUrl + link);
-    // if (preference.getData("urlsap") != null) {
-    //   if (preference.getData("urlsap") != " ") {
-    //     url = Uri.parse(preference.getData("urlsap") + link);
-    //   }
-    // }
-    // return url;
+    var url = Uri.parse(bapiUrl + link);
+    if (preference.getData("urlsap") != null) {
+      if (preference.getData("urlsap") != " ") {
+        url = Uri.parse(preference.getData("urlsap") + link);
+      }
+    }
+    return url;
   }
 
-  defaultErrorResponse(context, message) => alert.alertWarning(context: context, text: message);
+  defaultErrorResponse({context, message}) => alert.alertWarning(context: context, text: message);
 
-  defaultSuccessResponse(context, message) => alert.alertSuccess(context: context, text: message);
+  defaultSuccessResponse({context, message}) => alert.alertSuccess(context: context, text: message);
 
-  errorResponse(context, message) {
+  errorResponse({context, message}) {
     Navigator.pop(context);
     alert.alertWarning(context: context, text: message);
   }
 
-  errorResponseNavigate(context, message, route) {
+  errorResponseNavigate({context, message, route}) {
     Navigator.pushNamed(context, route);
     alert.alertWarning(context: context, text: message);
   }
 
-  successResponse(context, message) {
+  successResponse({context, message}) {
     Navigator.pop(context);
     alert.alertSuccess(context: context, text: message);
   }
 
-  successResponseNavigate(context, message, route) {
+  successResponseNavigate({context, message, route}) {
     Navigator.pushNamed(context, route);
     alert.alertSuccess(context: context, text: message);
   }
 
-  errorResponsePop(context, message) {
+  errorResponsePop({context, message}) {
     Navigator.pop(context);
     alert.alertWarning(context: context, text: message);
   }
 
-  successResponsePop(context, message) {
+  successResponsePop({context, message}) {
     Navigator.pop(context);
     alert.alertSuccess(context: context, text: message);
   }
@@ -80,12 +82,22 @@ class Global {
     if (res.statusCode == 200) {
       return data["data"];
     } else if (res.statusCode == 422) {
-      return global.errorResponsePop(context, "Error 422");
+      return errorResponsePop(
+        context: context,
+        message: "Error 422",
+      );
     } else if (res.statusCode == 419) {
-      // preference.clearPreference();
-      return global.errorResponseNavigate(context, "Sesi anda habis, silahkan login ulang !", '/');
+      preference.clearPreference();
+      return errorResponseNavigate(
+        context: context,
+        message: "Sesi anda habis, silahkan login ulang !",
+        route: '/',
+      );
     } else if (res.statusCode == 400) {
-      return global.errorResponsePop(context, data["message"]);
+      return errorResponsePop(
+        context: context,
+        message: data["message"],
+      );
     }
   }
 }

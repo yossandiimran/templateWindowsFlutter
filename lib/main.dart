@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart' as mt;
 import 'package:windowsapp/header.dart';
+
+part "route.dart";
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +26,8 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.blue,
         iconTheme: const IconThemeData(size: 24),
       ),
-      home: NavigatorPane(),
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
